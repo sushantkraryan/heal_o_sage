@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'bmi_calculator_page.dart';
 import 'exercise_page.dart';
 import 'progress_page.dart';
 
@@ -15,8 +16,9 @@ class WorkoutPage extends StatefulWidget {
 class _WorkoutPageState extends State<WorkoutPage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-     ExercisePage(),
-     ProgressPage(),
+    ExercisePage(),
+    ProgressPage(),
+    BMICalculator(),
   ];
 
   void _onItemTapped(int index) {
@@ -42,6 +44,10 @@ class _WorkoutPageState extends State<WorkoutPage> {
             icon: Icon(Icons.show_chart),
             label: 'Progress',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calculate),
+            label: 'BMICalculator',
+          )
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
