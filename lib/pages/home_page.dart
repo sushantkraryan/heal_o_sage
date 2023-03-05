@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'diet_page.dart';
-import 'mental_wellness_page.dart';
-import 'workout_page.dart';
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -16,33 +12,24 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WorkoutPage()),
-                );
-              },
               child: const Text('Start Workout'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/workout_page');
+              },
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const DietPage()),
-                );
-              },
               child: const Text('View Diet Plan'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/diet_page');
+              },
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MentalWellnessPage()),
-                );
-              },
               child: const Text('Mental Wellness'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/mental_wellness_page');
+              },
             ),
           ],
         ),
