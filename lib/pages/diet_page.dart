@@ -1,54 +1,72 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 
-import 'non_veg_page.dart';
-import 'veg_page.dart';
-
-class DietPage extends StatefulWidget {
-  const DietPage({super.key});
-
+class VegNonvegPage extends StatefulWidget {
   @override
-  _DietPageState createState() => _DietPageState();
+  _VegNonvegPageState createState() => _VegNonvegPageState();
 }
 
-class _DietPageState extends State<DietPage> {
+class _VegNonvegPageState extends State<VegNonvegPage> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = <Widget>[
-     VegPage(),
-     NonVegPage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Diet'),
+        title: Text('Select Meal Type'),
       ),
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon:  Icon(Icons.radio_button_checked,
-        color: Colors.green,
-      ),
-            label: 'Veg',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.radio_button_unchecked,
-        color: Colors.red,
-      ),
-            label: 'NonVeg',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Select your meal type:',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ChoiceChip(
+                  label: Text('Vegetarian'),
+                  selected: _selectedIndex == 0,
+                  onSelected: (bool selected) {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ChoiceChip(
+                  label: Text('Non-vegetarian'),
+                  selected: _selectedIndex == 1,
+                  onSelected: (bool selected) {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              child: Text('Next'),
+              onPressed: () {
+                // Handle navigation based on the selected meal type
+                if (_selectedIndex == 0) {
+                  Navigator.pushNamed(context, '/vegetarian_meals');
+                } else {
+                  Navigator.pushNamed(context, '/non_vegetarian_meals');
+                }
+              },
+            )
+          ],
+        ),
       ),
     );
   }
