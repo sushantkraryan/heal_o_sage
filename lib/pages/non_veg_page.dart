@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heal_o_sage/pages/food_categories_screen.dart';
+import 'package:heal_o_sage/screens/diet_Screen.dart';
 
 class NonVegPage extends StatelessWidget {
   
@@ -10,7 +11,7 @@ class NonVegPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FoodCategoriesScreen();
+    return const DietScreen();
   }
 }
   

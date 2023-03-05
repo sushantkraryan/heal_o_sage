@@ -9,7 +9,7 @@ class FirstPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue, Colors.blue],
+            colors: [Colors.pink, Colors.brown],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -50,13 +50,13 @@ class FirstPage extends StatelessWidget {
               child: Text(
                 'Login',
                 style: TextStyle(
-                  color: Colors.blue[900],
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // background color
+                primary: Colors.pink, // background color
                 onPrimary: Colors.white, // text color
                 padding: EdgeInsets.symmetric(
                     horizontal: 16, vertical: 10), // button padding
@@ -76,7 +76,7 @@ class FirstPage extends StatelessWidget {
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // background color
+                primary: Colors.pink, // background color
                 onPrimary: Colors.white, // text color
                 padding: EdgeInsets.symmetric(
                     horizontal: 16, vertical: 10), // button padding
