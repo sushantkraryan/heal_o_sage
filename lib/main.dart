@@ -1,27 +1,83 @@
-
-
-
 import 'package:flutter/material.dart';
-import 'package:heal_o_sage/pages/non_veg_page.dart';
-import 'package:heal_o_sage/pages/veg_page.dart';
-import 'package:heal_o_sage/screens/diet_Screen.dart';
+import '/screens/tabs_screen.dart';
 
+import 'dummy_data.dart';
+import 'models/meal.dart';
 import 'pages/home_page.dart';
-
-import 'pages/diet_page.dart';
+import 'pages/meditation_page.dart';
 import 'pages/first_page.dart';
 import 'pages/login_page.dart';
 import 'pages/mental_wellness_page.dart';
 import 'pages/signup_page.dart';
 import 'pages/workout_page.dart';
-
+import 'screens/categories_screen.dart';
+import 'screens/category_meals_screen.dart';
+import 'screens/filters_screen.dart';
+import 'screens/meal_detail_screen.dart';
 
 void main() {
   runApp(const HealoSage());
 }
 
-class HealoSage extends StatelessWidget {
+class HealoSage extends StatefulWidget {
   const HealoSage({super.key});
+
+  @override
+  State<HealoSage> createState() => _HealoSageState();
+}
+
+class _HealoSageState extends State<HealoSage> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
+  List<Meal> _availableMeals = DUMMY_MEALS;
+  final List<Meal> _favoriteMeals = [];
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters['gluten']! && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose']! && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegan']! && !meal.isVegan) {
+          return false;
+        }
+        if (_filters['vegetarian']! && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex =
+        _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(
+          DUMMY_MEALS.firstWhere((meal) => meal.id == mealId),
+        );
+      });
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +86,23 @@ class HealoSage extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink),
       ),
-      home: const FirstPage(),
+      home:  FirstPage(),
       routes: {
-        '/workout_page': (context) => const WorkoutPage(),
-        '/diet_page': (context) => VegNonvegPage(),
-        '/mental_wellness_page': (context) => const MentalWellnessPage(),
-        '/login_page': (context) => const LoginPage(),
-        '/signup_page': (context) => SignUpPage(),
-        '/home_page' :(context) => const HomePage(),
-        '/vegetarian_meals':(context) => const VegPage(),
-        '/non_vegetarian_meals':(context) => NonVegPage(),
-        '/diet_screen' :(context) => const DietScreen(),
+        WorkoutPage.routeName: (context) => const WorkoutPage(),
+        MeditationPage.routeName: (context) => const MeditationPage(),
+        LoginPage.routeName: (context) => const LoginPage(),
+        SignUpPage.routeName: (context) => const SignUpPage(),
+        HomePage.routeName: (context) => const HomePage(),
+        MentalWellnessPage.routeName:(context) => const MentalWellnessPage(),
+        TabsScreen.routeName: (ctx) => const TabsScreen(
+              favoriteMeals: [],
+            ),
+        CategoryMealsScreen.routeName: (ctx) =>
+            CategoryMealsScreen(_availableMeals),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(_toggleFavorite, _isMealFavorite),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
+        CategoriesScreen.routeName: (context) => const CategoriesScreen(),
       },
     );
   }

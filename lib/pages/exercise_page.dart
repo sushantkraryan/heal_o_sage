@@ -1,46 +1,64 @@
 import 'package:flutter/material.dart';
 
-
 class ExercisePage extends StatelessWidget {
-  const ExercisePage({super.key});
+  const ExercisePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView(
+      body: ListView(
         padding: const EdgeInsets.all(25),
         children: [
-          ExerciseItem(
-            title: 'Strength Training',
-            color: Colors.red,
-          ),
-          ExerciseItem(
-            title: 'Cardio',
-            color: Colors.blue,
-          ),
-          ExerciseItem(
-            title: 'Yoga',
-            color: Colors.green,
-          ),
-          ExerciseItem(
-            title: 'Pilates',
-            color: Colors.orange,
-          ),
-          ExerciseItem(
-            title: 'Stretching',
-            color: Colors.purple,
-          ),
-          ExerciseItem(
-            title: 'Sports',
-            color: Colors.teal,
+          GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            children: [
+              ExerciseItem(
+                title: 'Strength Training',
+                color: Colors.red,
+                icon: Icons.fitness_center,
+              ),
+              ExerciseItem(
+                title: 'Cardio',
+                color: Colors.blue,
+                icon: Icons.directions_run,
+              ),
+              ExerciseItem(
+                title: 'Yoga',
+                color: Colors.green,
+                icon: Icons.self_improvement,
+              ),
+              ExerciseItem(
+                title: 'Pilates',
+                color: Colors.orange,
+                icon: Icons.sports_kabaddi,
+              ),
+              ExerciseItem(
+                title: 'Stretching',
+                color: Colors.purple,
+                icon: Icons.accessibility_new,
+              ),
+              ExerciseItem(
+                title: 'Sports',
+                color: Colors.teal,
+                icon: Icons.sports_baseball,
+              ),
+              ExerciseItem(
+                title: 'Swimming',
+                color: Colors.indigo,
+                icon: Icons.pool,
+              ),
+              ExerciseItem(
+                title: 'Cycling',
+                color: Colors.amber,
+                icon: Icons.pedal_bike,
+              ),
+            ],
           ),
         ],
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-        ),
       ),
     );
   }
@@ -49,11 +67,14 @@ class ExercisePage extends StatelessWidget {
 class ExerciseItem extends StatelessWidget {
   final String title;
   final Color color;
+  final IconData icon;
 
-  ExerciseItem({
+  const ExerciseItem({
     required this.title,
     required this.color,
-  });
+    required this.icon,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +84,23 @@ class ExerciseItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: const EdgeInsets.all(15),
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.headline6,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: Colors.white,
+              size: 50,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headline6!.copyWith(
+                    color: Colors.white,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(

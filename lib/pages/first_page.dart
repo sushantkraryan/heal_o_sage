@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/pages/login_page.dart';
+import '/pages/signup_page.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
@@ -8,6 +10,10 @@ class FirstPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/heal.jpg'),
+            fit: BoxFit.cover,
+          ),
           gradient: LinearGradient(
             colors: [Colors.pink, Colors.brown],
             begin: Alignment.topCenter,
@@ -21,7 +27,7 @@ class FirstPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                'Welcome,it\'s ',
+                'Hey Buddy,It\'s',
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
@@ -45,7 +51,7 @@ class FirstPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login_page');
+                Navigator.pushNamed(context, LoginPage.routeName);
               },
               child: Text(
                 'Login',
@@ -65,7 +71,7 @@ class FirstPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/signup_page');
+                Navigator.pushNamed(context, SignUpPage.routeName);
               },
               child: Text(
                 'Register',

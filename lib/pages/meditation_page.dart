@@ -1,129 +1,136 @@
 import 'package:flutter/material.dart';
 
 class MeditationPage extends StatelessWidget {
-  const MeditationPage({super.key});
+  static const routeName = '/meditation_page';
 
+  const MeditationPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 20),
-            Text(
-              'Meditation',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                children: <Widget>[
-                  MeditationCard(
-                    title: 'Breathing Meditation',
-                    imageUrl:
-                        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fisha.sadhguru.org%2Fyoga%2Fmeditations%2Fscience-of-meditation%2F&psig=AOvVaw0J_JpswP7RL3cVrerBN3Vx&ust=1678104828063000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODlrOThxP0CFQAAAAAdAAAAABAD',
-                    duration: '10 min',
-                    onTap: () {
-                      //TODO: Navigate to breathing meditation screen
-                    },
-                  ),
-                  SizedBox(height: 16),
-                  MeditationCard(
-                    title: 'Mindfulness Meditation',
-                    imageUrl:
-                        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fisha.sadhguru.org%2Fyoga%2Fmeditations%2Fscience-of-meditation%2F&psig=AOvVaw0J_JpswP7RL3cVrerBN3Vx&ust=1678104828063000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODlrOThxP0CFQAAAAAdAAAAABAD',
-                    duration: '15 min',
-                    onTap: () {
-                      //TODO: Navigate to mindfulness meditation screen
-                    },
-                  ),
-                  SizedBox(height: 16),
-                  MeditationCard(
-                    title: 'Loving-Kindness Meditation',
-                    imageUrl:
-                        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fisha.sadhguru.org%2Fyoga%2Fmeditations%2Fscience-of-meditation%2F&psig=AOvVaw0J_JpswP7RL3cVrerBN3Vx&ust=1678104828063000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODlrOThxP0CFQAAAAAdAAAAABAD',
-                    duration: '20 min',
-                    onTap: () {
-                      //TODO: Navigate to loving-kindness meditation screen
-                    },
-                  ),
-                  SizedBox(height: 16),
-                  MeditationCard(
-                    title: 'Body Scan Meditation',
-                    imageUrl:
-                        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fisha.sadhguru.org%2Fyoga%2Fmeditations%2Fscience-of-meditation%2F&psig=AOvVaw0J_JpswP7RL3cVrerBN3Vx&ust=1678104828063000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODlrOThxP0CFQAAAAAdAAAAABAD',
-                    duration: '30 min',
-                    onTap: () {
-                      //TODO: Navigate to body scan meditation screen
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+      body: ListView(
+        children: [
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Breathing exercise',
+            'Take a deep breath in through your nose for 4 seconds, hold for 7 seconds, and exhale through your mouth for 8 seconds. Repeat for 1-2 minutes.',
+            Icons.air_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Mindfulness exercise',
+            'Sit quietly and focus on your breath. Notice each inhale and exhale without judgement or distraction. Try to do this for 5-10 minutes.',
+            Icons.self_improvement_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Gratitude exercise',
+            'Write down three things you are grateful for today. They can be small things like a delicious meal or a friendly conversation.',
+            Icons.favorite_border_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Visualization exercise',
+            'Close your eyes and imagine a peaceful scene, such as a beach or a forest. Visualize yourself in that scene and feel the calmness and relaxation it brings.',
+            Icons.image_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Stretching exercise',
+            'Take a few minutes to stretch your body. Focus on your breath and feel the tension release as you stretch your muscles.',
+            Icons.accessibility_new_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Body scan meditation',
+            'Lie down or sit comfortably and focus on your body from your toes to your head. Notice any sensations, tension or discomfort. Breathe into the areas of tension and imagine them relaxing.',
+            Icons.spa_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Laugh out loud',
+            'Watch a funny movie, read a joke or hang out with a friend who makes you laugh. Laughter triggers the release of endorphins, which can improve mood and decrease stress.',
+            Icons.sentiment_very_satisfied_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Mindful walking',
+            'Go for a walk and focus on your senses - what you see, hear, smell, and feel. Notice the ground under your feet and the movement of your body. If your mind wanders, bring it back to your senses.',
+            Icons.directions_walk_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Positive affirmations',
+            'Repeat positive statements to yourself such as "I am strong and capable" or "I am worthy of love and respect". This can help build self-esteem and reduce negative self-talk.',
+            Icons.chat_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Gratitude letter',
+            'Write a letter expressing gratitude to someone who has helped or inspired you. This can improve mood and increase feelings of connection and appreciation.',
+            Icons.mail_outline,
+          ),
+          SizedBox(height: 16.0),
+        ],
       ),
     );
   }
-}
 
-class MeditationCard extends StatelessWidget {
-  final String title;
-  final String imageUrl;
-  final String duration;
-  final Function onTap;
-
-  const MeditationCard({
-    Key? key,
-    required this.title,
-    required this.imageUrl,
-    required this.duration,
-    required this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(16),
+  Widget _buildExerciseCard(
+      BuildContext context, String title, String description, IconData icon) {
+    return InkWell(
+      onTap: () {
+        // TODO: Implement exercise selection logic
+      },
+      child: Card(
+        elevation: 4.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Container(
-              height: 150,
+              height: 100.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(imageUrl),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
+                color: Colors.pink,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      icon,
+                      size: 24.0,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 16.0),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            SizedBox(height: 12),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              duration,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                description,
+                style: TextStyle(fontSize: 18.0),
               ),
             ),
           ],
