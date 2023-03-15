@@ -11,25 +11,29 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
 
-  MealItem(
-      {required this.id,
-      required this.title,
-      required this.imageUrl,
-      required this.affordability,
-      required this.complexity,
-      required this.duration,});
+  MealItem({
+    required this.id,
+    required this.title,
+    required this.imageUrl,
+    required this.affordability,
+    required this.complexity,
+    required this.duration,
+  });
 
   String get complexityText {
     switch (complexity) {
-      case Complexity.Simple:
+      case Complexity.simple:
         return 'Simple';
-        break;
-      case Complexity.Challenging:
+      // break;
+
+      case Complexity.challenging:
         return 'Challenging';
-        break;
-      case Complexity.Hard:
+      // break;
+
+      case Complexity.hard:
         return 'Hard';
-        break;
+      // break;
+
       default:
         return 'Unknown';
     }
@@ -37,15 +41,15 @@ class MealItem extends StatelessWidget {
 
   String get affordabilityText {
     switch (affordability) {
-      case Affordability.Affordable:
+      case Affordability.affordable:
         return 'Affordable';
-        break;
-      case Affordability.Pricey:
+      // break;
+      case Affordability.pricey:
         return 'Pricey';
-        break;
-      case Affordability.Luxurious:
+      // break;
+      case Affordability.luxurious:
         return 'Expensive';
-        break;
+      // break;
       default:
         return 'Unknown';
     }
@@ -59,7 +63,6 @@ class MealItem extends StatelessWidget {
     )
         .then((result) {
       if (result != null) {
-        // removeItem(result);
       }
     });
   }

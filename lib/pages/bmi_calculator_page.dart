@@ -1,69 +1,117 @@
 import 'package:flutter/material.dart';
 
+
+
+
 class BMICalculator extends StatefulWidget {
-  const BMICalculator({super.key});
+  const BMICalculator({Key? key}) : super(key: key);
 
   @override
   _BMICalculatorState createState() => _BMICalculatorState();
 }
 
 class _BMICalculatorState extends State<BMICalculator> {
-  final _heightController = TextEditingController();
-  final _weightController = TextEditingController();
+  double _height = 170;
+  double _weight = 60;
   double _bmi = 0;
 
-  void _calculateBMI() {
+  void _calculateBmi() {
     setState(() {
-      double height = double.tryParse(_heightController.text) ?? 0;
-      double weight = double.tryParse(_weightController.text) ?? 0;
-      _bmi = weight / ((height / 100) * (height / 100));
+      _bmi = _weight / ((_height / 100) * (_height / 100));
     });
   }
 
-  @override
-  void dispose() {
-    _heightController.dispose();
-    _weightController.dispose();
-    super.dispose();
+  String _getBmiMessage() {
+    if (_bmi < 18.5) {
+      return 'Underweight';
+    } else if (_bmi < 25) {
+      return 'Normal';
+    } else if (_bmi < 30) {
+      return 'Overweight';
+    } else {
+      return 'Obese';
+    }
+  }
+
+  String _getBmiDescription() {
+    if (_bmi < 18.5) {
+      return 'You are underweight. Eat more and exercise regularly.';
+    } else if (_bmi < 25) {
+      return 'You are in a healthy weight range. Keep up the good work!';
+    } else if (_bmi < 30) {
+      return 'You are overweight. Consider exercising more and watching your diet.';
+    } else {
+      return 'You are obese. Please consult a doctor for advice on how to lose weight.';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Text(
-              'Calculate Your BMI',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              'Height',
+              style: TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: _heightController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              decoration: InputDecoration(
-                labelText: 'Height (cm)',
-                hintText: 'Enter your height in centimeters',
-              ),
+            Slider(
+              value: _height,
+              min: 100,
+              max: 250,
+              onChanged: (value) {
+                setState(() {
+                  _height = value.roundToDouble();
+                });
+              },
             ),
-            TextFormField(
-              controller: _weightController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              decoration: InputDecoration(
-                labelText: 'Weight (kg)',
-                hintText: 'Enter your weight in kilograms',
-              ),
+            Text(
+              '$_height cm',
+              style: TextStyle(fontSize: 24),
             ),
+            SizedBox(height: 30),
+            Text(
+              'Weight',
+              style: TextStyle(fontSize: 24),
+            ),
+            Slider(
+              value: _weight,
+              min: 40,
+              max: 200,
+              onChanged: (value) {
+                setState(() {
+                  _weight = value.roundToDouble();
+                });
+              },
+            ),
+            Text(
+              '$_weight kg',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 30),
             ElevatedButton(
-              onPressed: _calculateBMI,
-              child: Text('Calculate'),
+              onPressed: _calculateBmi,
+              child: Text(
+                'Calculate BMI',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 30),
             Text(
-              'Your BMI: ${_bmi.toStringAsFixed(1)}',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              _bmi > 0 ? 'BMI: ${_bmi.toStringAsFixed(1)}' : '',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 30),
+            Text(
+              _bmi > 0 ? _getBmiMessage() : '',
+              style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Text(
+              _bmi > 0 ? _getBmiDescription() : '',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
             ),
           ],
         ),

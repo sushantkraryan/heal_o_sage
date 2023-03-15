@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:heal_o_sage/screens/meal_detail_screen.dart';
+
 import '../screens/filters_screen.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  const MainDrawer({super.key});
+
+  @override
+  State<MainDrawer> createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
   Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
         leading: Icon(
@@ -45,7 +54,7 @@ class MainDrawer extends StatelessWidget {
             height: 20,
           ),
           buildListTile('Meals', Icons.restaurant, () {
-            Navigator.of(context).pushReplacementNamed('/');
+            Navigator.of(context).pushReplacementNamed(MealDetailScreen.routeName);
           }),
           buildListTile('Filters', Icons.settings, () {
             Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
