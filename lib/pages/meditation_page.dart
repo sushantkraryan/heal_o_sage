@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class MeditationPage extends StatelessWidget {
   static const routeName = '/meditation_page';
 
-  const MeditationPage({super.key});
+  const MeditationPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,9 +76,65 @@ class MeditationPage extends StatelessWidget {
           SizedBox(height: 16.0),
           _buildExerciseCard(
             context,
-            'Gratitude letter',
-            'Write a letter expressing gratitude to someone who has helped or inspired you. This can improve mood and increase feelings of connection and appreciation.',
-            Icons.mail_outline,
+            'Laughter exercise',
+            'Watch a funny video or read a joke. Laughing triggers the release of endorphins, which can improve mood and decrease stress.',
+            Icons.emoji_emotions_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Loving-kindness meditation',
+            'Sit quietly and repeat positive phrases to yourself such as "May I be happy, may I be healthy, may I be peaceful". Then extend these wishes to others, starting with someone close to you and gradually including all living beings.',
+            Icons.favorite_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Body awareness exercise',
+            'Take a few minutes to focus on each part of your body, starting from your toes and working your way up to your head. Notice any sensations or tension and try to relax those areas.',
+            Icons.healing_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Nature meditation',
+            'Find a peaceful spot outdoors and focus on the sights, sounds, and sensations of nature. Notice the colors of the leaves, the sound of birds, and the feeling of the sun on your skin.',
+            Icons.nature_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Affirmation jar',
+            'Write positive affirmations on slips of paper and put them in a jar. Whenever you need a boost of positivity, pick a slip of paper and read the affirmation.',
+            Icons.edit_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Breathing visualization',
+            'Close your eyes and imagine a ball of light expanding and contracting as you inhale and exhale. Focus on the rhythm of your breath and the sensation of the light.',
+            Icons.bubble_chart_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Walking meditation',
+            'Go for a walk and focus on your breath and the movement of your body. Notice each step and the feeling of your feet on the ground. If your mind wanders, bring it back to your breath and body.',
+            Icons.directions_run_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Body gratitude',
+            'Take a moment to thank each part of your body for its function and support. Start from your toes and work your way up to your head, expressing gratitude for each body part along the way.',
+            Icons.favorite_border_outlined,
+          ),
+          SizedBox(height: 16.0),
+          _buildExerciseCard(
+            context,
+            'Self-compassion meditation',
+            'Sit quietly and imagine sending love and compassion to yourself. Repeat phrases such as "May I be kind to myself, may I give myself the love I need". Allow yourself to feel the warmth and kindness of these words.',
+            Icons.healing_outlined,
           ),
           SizedBox(height: 16.0),
         ],
@@ -89,7 +146,7 @@ class MeditationPage extends StatelessWidget {
       BuildContext context, String title, String description, IconData icon) {
     return InkWell(
       onTap: () {
-        // TODO: Implement exercise selection logic
+// TODO: Implement exercise selection logic
       },
       child: Card(
         elevation: 4.0,

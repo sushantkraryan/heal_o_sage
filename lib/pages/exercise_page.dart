@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'cardio_exercise_page.dart';
+import 'strength_traning_exercise_page.dart';
 
 class ExercisePage extends StatelessWidget {
   const ExercisePage({Key? key}) : super(key: key);
@@ -20,41 +22,65 @@ class ExercisePage extends StatelessWidget {
                 title: 'Strength Training',
                 color: Colors.red,
                 icon: Icons.fitness_center,
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, StrengthTrainingExercisePage.routeName);
+                },
               ),
               ExerciseItem(
                 title: 'Cardio',
                 color: Colors.blue,
                 icon: Icons.directions_run,
+                onTap: () {
+                  Navigator.pushNamed(context, CardioExercisePage.routeName);
+                },
               ),
               ExerciseItem(
                 title: 'Yoga',
                 color: Colors.green,
                 icon: Icons.self_improvement,
+                onTap: () {
+                },
               ),
               ExerciseItem(
                 title: 'Pilates',
                 color: Colors.orange,
                 icon: Icons.sports_kabaddi,
+                onTap: () {
+                  // TODO: Navigate to pilates exercise page
+                },
               ),
               ExerciseItem(
                 title: 'Stretching',
                 color: Colors.purple,
                 icon: Icons.accessibility_new,
+                onTap: () {
+                  // TODO: Navigate to stretching exercise page
+                },
               ),
               ExerciseItem(
                 title: 'Sports',
                 color: Colors.teal,
                 icon: Icons.sports_baseball,
+                onTap: () {
+                  // TODO: Navigate to sports exercise page
+                },
               ),
               ExerciseItem(
                 title: 'Swimming',
                 color: Colors.indigo,
                 icon: Icons.pool,
+                onTap: () {
+                  // TODO: Navigate to swimming exercise page
+                },
               ),
               ExerciseItem(
                 title: 'Cycling',
                 color: Colors.amber,
                 icon: Icons.pedal_bike,
+                onTap: () {
+                  // TODO: Navigate to cycling exercise page
+                },
               ),
             ],
           ),
@@ -68,20 +94,20 @@ class ExerciseItem extends StatelessWidget {
   final String title;
   final Color color;
   final IconData icon;
+  final VoidCallback onTap;
 
   const ExerciseItem({
     required this.title,
     required this.color,
     required this.icon,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(15),
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -117,4 +143,3 @@ class ExerciseItem extends StatelessWidget {
     );
   }
 }
-
