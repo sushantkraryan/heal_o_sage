@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heal_o_sage/pages/cardio_exercise_page.dart';
 import '/screens/tabs_screen.dart';
 
 import 'dummy_data.dart';
@@ -9,6 +10,7 @@ import 'pages/first_page.dart';
 import 'pages/login_page.dart';
 import 'pages/mental_wellness_page.dart';
 import 'pages/signup_page.dart';
+import 'pages/strength_traning_exercise_page.dart';
 import 'pages/workout_page.dart';
 import 'screens/categories_screen.dart';
 import 'screens/category_meals_screen.dart';
@@ -86,14 +88,14 @@ class _HealoSageState extends State<HealoSage> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink),
       ),
-      home:  FirstPage(),
+      home: const FirstPage(),
       routes: {
         WorkoutPage.routeName: (context) => const WorkoutPage(),
         MeditationPage.routeName: (context) => const MeditationPage(),
         LoginPage.routeName: (context) => const LoginPage(),
         SignUpPage.routeName: (context) => const SignUpPage(),
         HomePage.routeName: (context) => const HomePage(),
-        MentalWellnessPage.routeName:(context) => const MentalWellnessPage(),
+        MentalWellnessPage.routeName: (context) => const MentalWellnessPage(),
         TabsScreen.routeName: (ctx) => const TabsScreen(
               favoriteMeals: [],
             ),
@@ -103,6 +105,9 @@ class _HealoSageState extends State<HealoSage> {
             MealDetailScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
         CategoriesScreen.routeName: (context) => const CategoriesScreen(),
+        StrengthTrainingExercisePage.routeName: (context) =>
+            const StrengthTrainingExercisePage(),
+        CardioExercisePage.routeName: (context) => const CardioExercisePage(),
       },
     );
   }

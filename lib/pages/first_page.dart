@@ -27,7 +27,7 @@ class FirstPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                'Hey Buddy,It\'s',
+                'Welcome,It\'s',
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
